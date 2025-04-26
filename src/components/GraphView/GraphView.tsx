@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import ReactFlow, { Background, Controls, MiniMap, useEdgesState, useNodesState } from 'reactflow';
 import { fetchGraphData } from '../../api/GraphService';
+import { useSelectedNode } from '../../contexts/SelectedNodeContext';
 import 'reactflow/dist/style.css';
 
 const GraphView = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const { setSelectedNode } = useSelectedNode();
 
   useEffect(() => {
     async function loadGraph() {
@@ -42,8 +44,7 @@ const GraphView = () => {
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onNodeClick={(event, node) => {
-            console.log('Node clicked:', node);
-            // Later open PrefillEditor here
+            setSelectedNode(node);
           }}
         fitView
       >

@@ -1,9 +1,11 @@
 import GraphView from './components/GraphView/GraphView';
+import PrefillEditor from './components/PrefillEditor/PrefillEditor';
 
 function App() {
   return (
-    <div>
-      <GraphView />
+    <div style={{ position: 'relative' }}>
+       <GraphView />
+       <PrefillEditor />
     </div>
   );
 }
